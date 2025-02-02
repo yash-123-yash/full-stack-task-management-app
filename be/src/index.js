@@ -10,7 +10,7 @@ const app = express()
 app.use(express.urlencoded({extended:true}))
 app.use(cookieParser())
 app.use(express.json())
-app.use(cors({credentials:true, origin:"http://localhost:5173"}))
+app.use(cors({credentials:true, origin:["https://full-stack-task-management-app-gules.vercel.app", "http://localhost:5173"]}))
 
 
 
