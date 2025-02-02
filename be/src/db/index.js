@@ -4,6 +4,6 @@ import { DATABASE_URL } from "../utils/config.js";
 const dbString = DATABASE_URL
 
 export async function connectDB(){
-    await mongoose.connect(dbString)
+    await mongoose.connect(dbString, { useNewUrlParser: true, useUnifiedTopology: true })
     return;
 }
