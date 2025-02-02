@@ -16,11 +16,7 @@ export default function OrderPage({ handleHidden }) {
 
   const quantityArray=[]
 
-  // function quantityArray(itemQuantity){
-  //   setQuantityArr([...quantityArr,itemQuantity])
-  // }
-
-  // const totalAmount = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
+ 
 
   async function handleBuy(items){
     console.log(items)
@@ -90,20 +86,7 @@ export default function OrderPage({ handleHidden }) {
         <div className="mt-4 font-bold text-lg flex justify-between">
           Total: ₹{cart.getTotalCost()}
 
-          {/* {
-            cart.items.map((item)=>{
-              const product = cart.getProductData(item._id)
-              // console.log(product)
-              // console.log(item)
-              //  quantityArray(item.quantity)
-              
-            })
-          } */}
-
-          {/* cart.items= [ {id: 1, quantity: 4},
-                            {id: 1, quantity: 4} 
-                          ]    
-          */}
+          
           <button onClick={()=>handleBuy(cart.items)} className="font-semibold text-sm border-2 border-gray-400 px-3 rounded-md py-2 bg-blue-600 text-white hover:bg-blue-700 active:scale-105  duration-400">Buy now</button>
         </div>
       )}

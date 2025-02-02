@@ -88,7 +88,7 @@ function LoginPage() {
   }
 
   return (
-    <div className="relative flex justify-center items-center min-h-screen   bg-gray-100 px-4 overflow-hidden">
+    <div className="relative flex justify-center items-center min-h-screen   bg-gray-100 px-4 overflow-hidden ">
       {/* Background Video */}
       <video 
         src={bg} 
@@ -99,28 +99,18 @@ function LoginPage() {
       />
       {showSignUp && 
         <>
-      <div className="absolute  w-full max-w-md bg-white p-8 rounded-2xl shadow-lg backdrop-blur-md bg-opacity-80">
+      <div className="absolute w-11/12 md:w-full  max-w-md bg-white p-8 rounded-2xl shadow-lg backdrop-blur-md bg-opacity-80">
         <h2 className="text-2xl font-bold text-center text-gray-700 mb-4">Login</h2>
 
         
-        <form className="mt-6" >
-          {/* <div>
-            <label className="block text-gray-600">Name</label>
-            <input 
-              type="name" 
-              placeholder="Enter your name" 
-              className="w-full mt-2 p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-              ref={nameRef} 
-              required
-            />
-          </div> */}
-
+        <form className="md:mt-6" >
+          
           <div>
             <label className="block text-gray-600">Email</label>
             <input 
               type="email" 
               placeholder="Enter your email" 
-              className="w-full mt-2 p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full md:mt-2 p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
               ref={emailRef} 
               required
             />
@@ -159,11 +149,11 @@ function LoginPage() {
 
         {!showSignUp && 
         <>
-      <div className="absolute  w-full max-w-md bg-white p-8 rounded-2xl shadow-lg backdrop-blur-md bg-opacity-50">
+      <div className="absolute  w-11/12 md:w-full max-w-md bg-white px-6 py-4 rounded-2xl shadow-lg backdrop-blur-md bg-opacity-50">
         <h2 className="text-2xl font-bold text-center text-gray-700 mb-4">signUp</h2>
 
         
-        <form className="mt-6" >
+        <form className="md:mt-6 mt-3" >
           <div>
             <label className="block text-gray-600">Name</label>
             <input 
