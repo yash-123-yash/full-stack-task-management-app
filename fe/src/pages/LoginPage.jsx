@@ -59,13 +59,10 @@ function LoginPage() {
   
       const inputData = userSchema.safeParse({ email, name, password })
   
-      // if(!inputData.success){
-      //   errorNotify(userData.error.errors[0].message)
-      // }
-      
+    
       if (!inputData.success) {
-        errorNotify(inputData.error.errors[0].message); // Use inputData.error instead of userData.error
-        return; // Stop execution if validation fails
+        errorNotify(inputData.error.errors[0].message); 
+        return; 
       }
   
       const response = await axios.post(`${BACKEN_URL_V1}/auth/login`, {
@@ -74,12 +71,9 @@ function LoginPage() {
         password: password
       },  { withCredentials: true })
   
-      // if(response.status === 201){
-      //   succesNotify("login succesfully!")
-      //   navigate('/menu')
-      // } 
+      
       if (response.status === 201) {
-        succesNotify("Login successfully!"); // Correct the typo
+        succesNotify("Login successfully!"); 
         navigate('/menu');
       }
     } catch (error) {

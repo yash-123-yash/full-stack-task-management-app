@@ -92,8 +92,8 @@ export default function MenuPage() {
       <div className="flex justify-between mb-1 ">
         <h1 className="text-4xl font-extrabold mb-6 text-gray-900 mt-2 ">Food Delivery System</h1>  
         <div className="">
-        <button className=" text-3xl mt-3 mr-6" onClick={()=>handleShow()}><ShoppingCart size={40}/></button>
-        <button className=" text-3xl mt-3" onClick={handleLogout}><LogOut size={40}/></button>
+        <button className=" md:text-3xl mt-3 mr-6" onClick={()=>handleShow()}><ShoppingCart size={40}/></button>
+        <button className=" md:text-3xl mt-3" onClick={handleLogout}><LogOut size={40}/></button>
         </div>
         
       </div>
