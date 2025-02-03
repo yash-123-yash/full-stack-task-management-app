@@ -6,7 +6,7 @@ function FoodCart(props) {
     const product = props.item;
     const cart=useContext(CartContext)
     const productQuantity=cart.getProductQuantity(product._id)
-    console.log("Image URL:", product);
+    // console.log("Image URL:", product);
 
   return (
     <>

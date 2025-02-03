@@ -47,7 +47,7 @@ export function Context({children}) {
 
     function addOneToCart(_id) {
 
-        console.log("hi")
+        // console.log("hi")
         const quantity = getProductQuantity(_id);
 
         if (quantity === 0) { 
@@ -67,7 +67,7 @@ export function Context({children}) {
         const quantity = getProductQuantity(_id);
 
         if(quantity == 1) {
-            deleteFromCart(menuId);
+            deleteFromCart(_id);
         } else {
             setCartProducts(
                 cartProducts.map(
@@ -75,6 +75,7 @@ export function Context({children}) {
                 )
             )
         }
+        // console.log(quantity)
     }
 
     function deleteFromCart(_id) {

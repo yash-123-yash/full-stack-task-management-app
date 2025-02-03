@@ -19,7 +19,9 @@ export default function OrderPage({ handleHidden }) {
  
 
   async function handleBuy(items){
-    console.log(items)
+    let answer=confirm('Are you sure want to buy!')
+
+    if(answer){
     try {
       const token = localStorage.getItem("sessionId")
       if(!token){
@@ -39,7 +41,7 @@ export default function OrderPage({ handleHidden }) {
       console.log(e);
       errorNotify(e.resposne.data.message)
     }
-  }
+  }}
 
   return (
     <div className="bg-white rounded-lg shadow-lg p-5 w-full md:w-96 ">

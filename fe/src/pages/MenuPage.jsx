@@ -20,10 +20,11 @@ export default function MenuPage() {
   const [search, setSearch] = useState("");
   const [show, setShow] = useState(false);
   const [ items, setItems ] = useState([]);
+  const [filteredItems, setFilteredItems] = useState([]);
   const navigate=useNavigate()
 
   
-
+// useEffect for API fetching
   const fetchItems = async() => {
     try {
       const response = await axios.get(`${BACKEN_URL_V1}/menu`);
@@ -36,11 +37,27 @@ export default function MenuPage() {
     }
   }
 
+  // useEffect for search functionality
   useEffect(() => {
     fetchItems()
   }, [])
 
+  useEffect(() => {
+    if (search.trim() === "") {
+      setFilteredItems(items);
+    } else {
+      setFilteredItems(
+        items.filter((item) =>
+          item.name.toLowerCase().includes(search.toLowerCase())
+        )
+      );
+    }
+  }, [search, items]);
+
   const handleLogout = async() => {
+    let answer=confirm('Want to logou t ')
+
+    if(answer){
     try {
       const response = await axios.get(`${BACKEN_URL_V1}/auth/logout`,{
         withCredentials: true
@@ -53,7 +70,7 @@ export default function MenuPage() {
       console.log(error)
       errorNotify(error.response.data.message)
     }
-  }
+  }}
 
   function handleShow(){
     setShow(true)
@@ -88,18 +105,20 @@ export default function MenuPage() {
 
   
   return (
-    <div className="container mx-auto p-4 px-6 bg-gradient-to-b from-blue-100 to-blue-50 min-h-screen">
-      <div className="flex justify-between mb-1 ">
-        <h1 className="text-4xl font-extrabold mb-6 text-gray-900 mt-2 ">Food Delivery System</h1>  
-        <div className="">
-        <button className=" md:text-3xl mt-3 mr-6" onClick={()=>handleShow()}><ShoppingCart size={40}/></button>
-        <button className=" md:text-3xl mt-3" onClick={handleLogout}><LogOut size={40}/></button>
+    <div className="container mx-auto   bg-gradient-to-b from-blue-100 to-blue-50 min-h-screen">
+      <div className="flex justify-between mb-3  flex-col md:flex-row bg-blue-300  rounded-b-3xl">
+        <div className="border-2 rounded-lg md:flex md:justify-between md:w-full px-6">
+          <h1 className="md:text-4xl text-2xl font-extrabold mb-2 md:mb-6 text-gray-900 mt-1 ">Food Delivery System</h1>  
+          <div className="flex  flex-row justify-end mb-3">
+            <button className=" md:text-3xl mt-3 hover:scale-105 duration-300 mr-3 md:mr-6" onClick={()=>handleShow()}><ShoppingCart className="md:w-8 md:h-8 w-6 h-6"/></button>
+            <button className=" md:text-3xl mt-3 hover:scale-105 duration-300 " onClick={handleLogout}><LogOut className="md:w-8 md:h-8 w-6 h-6" /></button>
+          </div>
         </div>
         
       </div>
       
 
-      <div className="">
+      <div className="mx-6">
         {/* Menu Items Section */}
         <div className="md:col-span-2 ">
           <div className="flex mb-6 justify-between items-center bg-white p-5 rounded-lg shadow-lg">
@@ -113,7 +132,7 @@ export default function MenuPage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {items.map((item) => (
+            {filteredItems.map((item) => (
               <div key={item.menuId} className="bg-white rounded-2xl shadow-xl p-6 hover:shadow-2xl transition-all flex flex-col items-center text-center">
                 <FoodCart item={item}/>
               </div>
@@ -125,15 +144,15 @@ export default function MenuPage() {
 
         
           {show && (
-  <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex justify-center items-center z-50">
-    <div className=" p-6 rounded-lg w-96">
-      <OrderPage
-        
-        handleHidden={handleHidden}
-      />
-    </div>
-  </div>
-)}
+              <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex justify-center items-center z-50">
+                <div className=" p-6 rounded-lg w-96">
+                  <OrderPage
+                    
+                    handleHidden={handleHidden}
+                  />
+                </div>
+              </div>
+           )}
         
       </div>
     </div>
