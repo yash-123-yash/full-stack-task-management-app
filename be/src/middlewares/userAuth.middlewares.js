@@ -1,15 +1,23 @@
 import { verifyToken } from "../utils/userAuthService.js";
 
 export const checkUser= (req,res,next)=>{
-    const sessionId = req.cookies.sessionId;
+    const authId = req.headers.authorization;
 
-    if(!sessionId){
+    if(!authId){
+        return res.status(401).json({
+            message: "User Unauthorization"
+        })
+    }
+
+    const token = authId.split(" ")[1];
+
+    if(!token){
         return res.status(401).json({
             message:"Unauthorized"
         })
     }
 
-    const user = verifyToken(sessionId)
+    const user = verifyToken(token)
 
     console.log("middle: ", user)
 

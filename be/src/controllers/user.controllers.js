@@ -57,8 +57,9 @@ export const handleSignup=async (req,res)=>{
             })
         }
 
-        return res.status(201).cookie("sessionId", token).json({
+        return res.status(201).json({
             message: "User created successfully",
+            data: token
         });  
     } catch (error) {
         console.log(error);
@@ -110,8 +111,9 @@ export const handleLogin = async(req,res) => {
         })
     }
 
-    return res.cookie("sessionId",token).status(201).json({
-        message:"User Logged in Successfully "
+    return res.status(201).json({
+        message:"User Logged in Successfully ",
+        data: token
     })
 
 }

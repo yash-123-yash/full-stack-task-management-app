@@ -21,9 +21,16 @@ export default function OrderPage({ handleHidden }) {
   async function handleBuy(items){
     console.log(items)
     try {
+      const token = localStorage.getItem("sessionId")
+      if(!token){
+        errorNotify("unauthorize")
+        return;
+      }
       const resposne = await axios.post(`${BACKEN_URL_V1}/order`, {
-        items: items
-      }, { withCredentials: true })
+        items: items,
+      },{ headers: {
+        Authorization: `Bearer ${token}`
+      } })
   
       if(resposne.status === 200){
         succesNotify("Your order os placed")

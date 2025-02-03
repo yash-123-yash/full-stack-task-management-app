@@ -36,8 +36,14 @@ function LoginPage() {
             name: name,
             email: email,
             password: cpassword
-          }, { withCredentials: true });
+          });
           if(response){
+            const token = response.data.data;
+            if(!token){
+              errorNotify("Unable to login")
+              return;
+            }
+            localStorage.setItem("sessionId", token)
             succesNotify("You have successfully Signup!")
             navigate("/menu")
           }
@@ -69,10 +75,16 @@ function LoginPage() {
         email: email,
         name: name,
         password: password
-      },  { withCredentials: true })
+      })
   
       
       if (response.status === 201) {
+        const token = response.data.data;
+        if(!token){
+          errorNotify("Uable to login")
+          return;
+        }
+        localStorage.setItem("sessionId", token)
         succesNotify("Login successfully!"); 
         navigate('/menu');
       }
